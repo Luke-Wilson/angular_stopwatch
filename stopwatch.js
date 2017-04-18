@@ -1,3 +1,5 @@
+var d = new Date();
+
 angular.module('app', [])
 .controller('AppController', AppController);
 
@@ -5,34 +7,23 @@ AppController.$inject = ['$interval'];
 
 function AppController ($interval) {
   var ctrl = this;
-  ctrl.test = 'OMG Angular is working';
-  ctrl.hour = 0
-  ctrl.min = 0
-  ctrl.sec = 0
-  ctrl.ms = 0
+  ctrl.sec = '00';
+  ctrl.ms = '00';
 
   ctrl.start = start;
   ctrl.stop = stop;
   ctrl.reset = reset;
 
-
   function start () {
+    d = d || new Date();
     ctrl.stop();
     ctrl.clock = $interval(_ => {
-      ctrl.ms++;
-      if (ctrl.ms === 250) {
-        ctrl.ms = 0;
-        ctrl.sec++;
-      }
-      if (ctrl.sec === 60) {
-        ctrl.sec = 0;
-        ctrl.min++;
-      }
-      if (ctrl.min === 60) {
-        ctrl.min = 0;
-        ctrl.hour++;
-      }
-    }, 1)
+      ctrl.diff = Date.now() - d;
+      ctrl.sec = Math.floor(ctrl.diff / 1000) % 60;
+      ctrl.ms = lpad(Math.floor((ctrl.diff % 1000) / 10));
+      ctrl.min = Math.floor(ctrl.diff / 60000) % 60;
+      ctrl.hour = Math.floor(ctrl.diff / (60000*60));
+    }, 1);
   }
 
   function stop() {
@@ -45,6 +36,14 @@ function AppController ($interval) {
     ctrl.min = 0;
     ctrl.sec = 0;
     ctrl.ms = 0;
+    d = undefined;
+  }
+
+  function lpad(num) {
+    if (num < 10) {
+      return '0'+num;
+    }
+    return num;
   }
 };
 

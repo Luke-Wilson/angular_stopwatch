@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+  <body ng-app="app">
+    <h1>home page</h1>
+    <div ng-controller="AppController as AppVm">
+      <p>{{AppVm.time}}</p>
+      <p>{{AppVm.hour}}h {{AppVm.min}}m {{AppVm.sec}}s {{AppVm.ms}}ms</p>
+
+      <button ng-click="AppVm.start()" >Start</button>
+      <button ng-click="AppVm.stop()" >Stop</button>
+      <button ng-click="AppVm.reset()" >Reset</button>
+
+    </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+  <script src="stopwatch.js"></script>
+  </body>
+</html>

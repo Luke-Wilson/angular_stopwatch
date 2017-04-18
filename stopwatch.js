@@ -18,10 +18,9 @@ function AppController ($interval) {
 
   function start () {
     ctrl.stop();
-    console.log('yo')
     ctrl.clock = $interval(_ => {
       ctrl.ms++;
-      if (ctrl.ms === 100) {
+      if (ctrl.ms === 250) {
         ctrl.ms = 0;
         ctrl.sec++;
       }

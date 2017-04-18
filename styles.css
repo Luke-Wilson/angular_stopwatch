@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  margin: 0 10px 0 0;
+}
+
+.ng-cloak {
+  display: none;
+}
+
+p {
+  font-size: 20px;
+}
